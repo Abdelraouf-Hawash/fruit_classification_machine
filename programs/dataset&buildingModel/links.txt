@@ -1,0 +1,5 @@
+lemon quality dataset :
+	https://www.kaggle.com/datasets/yusufemir/lemon-quality-dataset
+	
+Lemon - Good or Bad? (99% Accuracy):
+	https://www.kaggle.com/code/mokshitsurana/lemon-good-or-bad-99-accuracy
