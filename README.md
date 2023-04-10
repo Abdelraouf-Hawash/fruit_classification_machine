@@ -1,5 +1,5 @@
 # fruit classification machine
-this system used for fruit classification Based on fruit type or fruit quality and other ubon selected trained model
+this system used for fruit classification Based on fruit type or fruit quality and other upon selected trained model
 
 <img src="media/view1.jpg" width="800">
 
@@ -19,9 +19,9 @@ this system used for fruit classification Based on fruit type or fruit quality a
 
 * [HW_controller](arduino/HW_controller/HW_controller.ino): on arduino that send hardware state to PC and does what PC tells it to do through the serial. It use PID control to reach the speed goal.
 
-* [main](programs/main.py) script, is runing on PC and tells arduino what to do with a GUI
+* [main](programs/main.py) script, is running on PC and tells arduino what to do with a GUI
 
-* you can biuld your model fron this script "[build_model](programes/dataset&buildingModel/build_model.ipynb)".
+* you can biuld your model from this script "[build_model](programes/dataset&buildingModel/build_model.ipynb)".
 
 ## How to use
 
@@ -37,6 +37,5 @@ pip install tensorflow
 ```
 * run [main](programs/main.py) script:
 ```
-python main.py
+python3 main.py
 ```
-
