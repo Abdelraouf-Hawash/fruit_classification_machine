@@ -1,7 +1,12 @@
+# BY: Abdelraouf Hawash
+# DATE: 9/4/2023
+# GMAIL: abdelraouf.hawash@gmail.com
+
 import cv2
 import numpy as np
 import tensorflow as tf
 
+# remember to select your cam ID
 cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 cap.set(3, 640)
 cap.set(4, 480)
