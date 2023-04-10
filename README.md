@@ -34,6 +34,7 @@ pip install tk
 pip install Pillow
 pip install pyserial
 pip install tensorflow
+
 ```
 * run [main](programs/main.py) script:
 ```
