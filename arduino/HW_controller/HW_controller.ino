@@ -25,9 +25,9 @@ double target_servo_pos = 90; // servo goal pulses
 const int max_servo_pos = 150;// maximum pulses for servo
 const int min_servo_pos = 40; // minimum pulses for servo
 // time variables
-const int loop_time = 200 ;       //Looptime in millisecond
+const int loop_time = 300 ;       //Looptime in millisecond
 unsigned long lastMilli = 0;      //time history
-const byte noCommLoopMax = 50;    //number of main loops the robot will execute without communication before stopping
+const byte noCommLoopMax = 10;    //number of main loops the robot will execute without communication before stopping
 unsigned int noCommLoops = 0;     //main loop without communication counter
 // encoder
 const double encoder_Puls_per_cm = 62.5; // encoder puls per cm
