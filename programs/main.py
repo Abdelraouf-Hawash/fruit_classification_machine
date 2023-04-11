@@ -57,9 +57,13 @@ class App:
         self.kd_entry = tk.Entry(window, width=10, borderwidth=1)
         self.kd_entry.insert(0, "0.002")
             # white color sensitivity
-        self.sensitivity_label = tk.Label(window, bg='gray65', text="white sensitivity")
+        self.sensitivity_label = tk.Label(window, bg='gray65', text="White sensitivity")
         self.sensitivity_entry = tk.Entry(window, width=10, borderwidth=1)
         self.sensitivity_entry.insert(0, "100")
+            # classification score threshold
+        self.score_threshold_label = tk.Label(window, bg='gray65', text="Score threshold")
+        self.score_threshold_entry = tk.Entry(window, width=10, borderwidth=1)
+        self.score_threshold_entry.insert(0, "0.2")
             # canvas for showing image
         self.canvas = tk.Canvas(window, bg="white",width=640,height = 480)
             # start button
@@ -83,10 +87,12 @@ class App:
         self.kd_entry.grid(row=6,column=1)
         self.sensitivity_label.grid(row=7, column=0)
         self.sensitivity_entry.grid(row=7,column=1)
-        self.start_button.grid(row=8, column=0,columnspan=2)
-        self.current_speed_label.grid(row=9, column=0, columnspan=2, pady=10)
-        self.note_label.grid(row=9, column=2)
-        self.canvas.grid(row=0, column=2, rowspan=9, padx=30,pady=30)
+        self.score_threshold_label.grid(row=8, column=0)
+        self.score_threshold_entry.grid(row=8,column=1)
+        self.start_button.grid(row=9, column=0,columnspan=2)
+        self.current_speed_label.grid(row=10, column=0, columnspan=2, pady=10)
+        self.note_label.grid(row=10, column=2)
+        self.canvas.grid(row=0, column=2, rowspan=10, padx=30,pady=30)
 
         # mainloop
         self.window.mainloop()
@@ -175,14 +181,15 @@ class App:
             fruit = cv2.cvtColor(fruit, cv2.COLOR_BGR2RGB)
             fruit = tf.expand_dims(fruit, 0)
             predictions = self.model.predict(fruit)
-            score = tf.nn.softmax(predictions[0])
-            index = np.argmax(score)
-            if index :
+            score = round(float(predictions[0][0]), 2)
+            if score > float(self.score_threshold_entry.get()) :
                 self.fruit_is_normal = True
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2) # green rectangle for normal
             else:
                 self.fruit_is_normal = False
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2) # red rectangle for abnormal
+                
+            frame = cv2.putText(frame, f'score={score}', (x, y), 0, 0.5, (255, 0, 0))
             
         return frame
 
