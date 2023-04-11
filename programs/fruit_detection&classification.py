@@ -7,11 +7,12 @@ import numpy as np
 import tensorflow as tf
 
 # remember to select your cam ID
-cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 cap.set(3, 640)
 cap.set(4, 480)
 
 model = tf.keras.models.load_model('./models/lemon_quality')
+score_threshold = 0.2
 
 def nothing(x):
     pass
@@ -51,14 +52,15 @@ while (cap.isOpened):
             fruit = cv2.cvtColor(fruit, cv2.COLOR_BGR2RGB)
             fruit = tf.expand_dims(fruit, 0)
             predictions = model.predict(fruit)
-            score = tf.nn.softmax(predictions[0])
-            index = np.argmax(score)
-            if index :
+            score = round(float(predictions[0][0]), 2)
+            if score > score_threshold :
                 fruit_is_normal = True
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2) # green rectangle for normal
             else:
                 fruit_is_normal = False
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2) # red rectangle for abnormal
+                
+            frame = cv2.putText(frame, f'score={score}', (x, y), 0, 0.5, (255, 0, 0))
 
     cv2.imshow("frame", frame)
     cv2.imshow("mask", mask)
