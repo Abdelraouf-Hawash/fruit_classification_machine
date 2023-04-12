@@ -38,5 +38,5 @@ pip install tensorflow
 ```
 * run [main](programs/main.py) script:
 ```
-python3 main.py
+python main.py
 ```
