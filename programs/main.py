@@ -43,7 +43,7 @@ class App:
         self.model_ID.set("lemon_quality") # default value
         self.model_menu= tk.OptionMenu(window, self.model_ID, *self.models)
             # speed and PID detection
-        self.speed_label = tk.Label(window, bg='gray65', text="Speed (cm)")
+        self.speed_label = tk.Label(window, bg='gray65', text="Speed (cm/s)")
         self.speed_entry = tk.Entry(window, width=10,  borderwidth=1)
         self.speed_entry.insert(0, "6.0")
         self.current_speed_label = tk.Label(window, bg='gray65')
