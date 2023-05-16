@@ -11,7 +11,7 @@ this system used for fruit classification Based on fruit type or fruit quality a
 * we used arduino uno.
 * webcam
 * servo motor
-* geared motor
+* geared motor with encoder
 
 ## software
 
